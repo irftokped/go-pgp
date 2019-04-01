@@ -38,7 +38,7 @@ func TestEncrypt(t *testing.T) {
 		t.Error(errors.New("Decrypted message does not equal original."))
 	}
 	fmt.Println("Decrypted message equals original message.")
-	fmt.Println("Entcrypt test: END\n")
+	fmt.Println("Entcrypt test: END")
 }
 
 const TestMessage = "hello world"
@@ -101,4 +101,3 @@ XxbNBnj46XwaIs6OlrO2htV0al2/WVTNnSLxCyoHXoJEDXyaOyNKn1jM/FczgYQJ
 069uC804ohOfjLmbtUEYE7Hjeo5utPm2ryjnakgV5AStKgL0SyFZUwN/DwARAQAB
 =gO1a
 -----END PGP PUBLIC KEY BLOCK-----`
-
