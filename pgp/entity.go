@@ -1,9 +1,9 @@
 package pgp
 
 import (
-	"golang.org/x/crypto/openpgp/packet"
-	"golang.org/x/crypto/openpgp"
 	"crypto"
+	"golang.org/x/crypto/openpgp"
+	"golang.org/x/crypto/openpgp/packet"
 )
 
 func GetEntity(publicKey []byte, privateKey []byte) (*openpgp.Entity, error) {
@@ -28,11 +28,11 @@ func createEntityFromKeys(pubKey *packet.PublicKey, privKey *packet.PrivateKey) 
 	config := packet.Config{
 		DefaultHash:            crypto.SHA256,
 		DefaultCipher:          packet.CipherAES256,
-		DefaultCompressionAlgo: packet.CompressionZLIB,
+		DefaultCompressionAlgo: packet.CompressionZIP,
 		CompressionConfig: &packet.CompressionConfig{
 			Level: 9,
 		},
-		RSABits: 4096,
+		RSABits: 2048,
 	}
 	currentTime := config.Now()
 	uid := packet.NewUserId("", "", "")
@@ -64,7 +64,7 @@ func createEntityFromKeys(pubKey *packet.PublicKey, privKey *packet.PrivateKey) 
 
 	e.Subkeys = make([]openpgp.Subkey, 1)
 	e.Subkeys[0] = openpgp.Subkey{
-		PublicKey: pubKey,
+		PublicKey:  pubKey,
 		PrivateKey: privKey,
 		Sig: &packet.Signature{
 			CreationTime:              currentTime,
