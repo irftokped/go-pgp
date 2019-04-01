@@ -2,8 +2,8 @@ package pgp_test
 
 import (
 	"fmt"
-	"testing"
 	"github.com/jchavannes/go-pgp/pgp"
+	"testing"
 )
 
 func TestSignature(t *testing.T) {
@@ -31,5 +31,5 @@ func TestSignature(t *testing.T) {
 		t.Error(err)
 	}
 	fmt.Println("Signature verified using public key entity.")
-	fmt.Println("Signature test: END\n")
+	fmt.Println("Signature test: END")
 }
