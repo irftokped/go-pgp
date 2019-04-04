@@ -3,21 +3,21 @@ package pgp
 import (
 	"bytes"
 	"golang.org/x/crypto/openpgp"
+	"golang.org/x/crypto/openpgp/clearsign"
 )
 
 func Sign(entity *openpgp.Entity, message []byte) ([]byte, error) {
 	writer := new(bytes.Buffer)
 	// reader := bytes.NewReader(message)
-	w, err := openpgp.Sign(writer, entity, nil, nil)
+	dec, err := clearsign.Encode(writer, entity.PrivateKey, nil)
 	if err != nil {
 		return []byte{}, err
 	}
-	_, err = w.Write(message)
+	_, err = dec.Write(message)
 	if err != nil {
 		return []byte{}, err
 	}
-	err = w.Close()
-	// err := openpgp.ArmoredDetachSign(writer, entity, reader, nil)
+	err = dec.Close()
 	if err != nil {
 		return []byte{}, err
 	}
